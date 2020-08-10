@@ -3,6 +3,7 @@
 ### Group Member
 Henry
 
+<<<<<<< Updated upstream
 Piercson
 
 ### Source of our data
@@ -21,3 +22,11 @@ Piercson
 4. Airport Codes:
     
     https://github.com/datasets/airport-codes/blob/master/data/airport-codes.csv
+=======
+
+https://www.fasken.com/en/knowledge/2020/04/1-covid-19-government-orders-closing-businesses/
+Ontario, Québec, Alberta, Manitoba and Saskatchewan
+closing non-essential or non-priority businesses
+
+
+>>>>>>> Stashed changes
