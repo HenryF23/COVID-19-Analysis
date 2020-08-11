@@ -26,7 +26,7 @@ def get_mask_data():
     plt.xlabel('Percentage people infected')
     plt.ylabel('Percentage people wearing mask')
     plt.title('Relationship between percentage of infected people \n and percentage of people who wear mask')
-    plt.show()
+    plt.savefig('./mask_analyze_picture/percentage_infected_vs_mask_usage.png')
 
 def chi_square_on_mask_usage():
     maskData = pd.read_csv('mask-use-by-county.csv')
@@ -42,7 +42,7 @@ def chi_square_on_mask_usage():
 
     chi2, p, dof, expected = stats.chi2_contingency(maskData)
 
-    print('pvalue is: ', p)
+    print('pvalue for Chi-Square test is:', p)
 
 def main():
     seaborn.set()

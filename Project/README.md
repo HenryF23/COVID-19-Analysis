@@ -9,16 +9,32 @@
 
 ### Code description
 
-1. Analyze relationship between number of flights and COVID-19 Cases
-        
-    analyze_flight.py
+1. [analyze_flight.py](./analyze_flight.py) 
     
-    Expect output:
-        
+    Description: Analyze relationship between number of flights and COVID-19 Cases
     
-2. Analyze relationship between mask usage and number of COVID-19 infections in United States and mask usage in country (with FIPS code) of United States
+    * Expect output files in current folder:
+        * newly_added_infection.csv
+    * Expect output files in [flight_and_infection_picture](./flight_and_infection_picture) folder:
+        * num_flights_arrived_each_day.png
+        * new_infections_detected_at_each_day.png
+        * analyzed_picture.png
+    * Expect output: None
+    
+2. [analyze_mask_usage.py](./analyze_mask_usage.py)
+    
+    Description: Analyze relationship between mask usage and number of COVID-19 infections in United States and mask usage in country (with FIPS code) of United States
+    
+    * Expect output files in [mask_analyze_picture](./mask_analyze_picture) folder:
+        * percentage_infected_vs_mask_usage.png
+    * Expect output:
+        * pvalue for Chi-Square Test
 
-    analyze_mask_usage.py
+
+### Order of execution
+
+1. [analyze_flight.py](./analyze_flight.py)
+2. [analyze_mask_usage.py](./analyze_mask_usage.py)
 
 Note: No need to pass any arguments, just run the code by
     

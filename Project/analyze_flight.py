@@ -10,12 +10,13 @@ def get_flight_date():
     flightList = pd.concat(myGroupedData, axis=0, ignore_index=True)
     country_code = pd.read_csv("airport-codes.csv")
 
-    print(flightList.shape)
+    # print(flightList.shape)
     country_code = country_code[['ident', 'iso_country']]
     flightList = flightList[['callsign', 'origin', 'destination', 'day']]
     flightList = flightList.dropna(subset=['destination']) # get rid of rows where destination is null value
     flightList['day'] = flightList['day'].dt.strftime('%Y-%m-%d')
-    print(flightList.shape)
+    # print(flightList.shape)
+
     # Join two tables so we can know the country of destination
     flightList = flightList.merge(country_code, left_on=['destination'],
                                   right_on=['ident']).drop(columns=['ident'])
@@ -58,7 +59,9 @@ def get_flight_date():
     plt.xlabel('Date')
     plt.ylabel('# flights arrived')
     plt.title('# flights arrived at each day from January to May')
-    plt.show()
+    plt.savefig('./flight_and_infection_picture/num_flights_arrived_each_day.png')
+    plt.clf()
+    # plt.show()
 
 def get_infection_data():
     infection = pd.read_csv('time_series_covid19_confirmed_global.csv')
@@ -100,10 +103,12 @@ def get_infection_data():
     locator = ticker.MaxNLocator(nbins=10) # with 3 bins you will have 4 ticks
     ax.xaxis.set_major_locator(locator)
     plt.xticks(rotation=25)
-    plt.xlabel('Date', fontdict={'fontsize': 22})
-    plt.ylabel('New infections detected', fontdict={'fontsize': 22})
-    plt.title('New infections detected at each day', fontdict={'fontsize': 30, 'weight': 'bold'})
+    plt.xlabel('Date', fontdict={'fontsize': 15})
+    plt.ylabel('New infections detected', fontdict={'fontsize': 15})
+    plt.title('New infections detected at each day', fontdict={'fontsize': 20, 'weight': 'bold'})
+    plt.savefig('./flight_and_infection_picture/new_infections_detected_at_each_day.png')
     # plt.show()
+    plt.clf()
 
 def analyze_data():
     myFlightData = []
@@ -148,15 +153,14 @@ def analyze_data():
                     fontsize=18, bbox=prob)
         plt.title(myValues[n], fontdict={'fontsize': 30, 'weight': 'bold'})
 
-
     # plt.show()
     plt.savefig('./flight_and_infection_picture/analyzed_picture.png')
     # plt.savefig('./flight_and_infection_picture/analyzed_picture_residuals.png')
 
 def main():
     seaborn.set()
-    # get_flight_date()
-    # get_infection_data()
+    get_flight_date()
+    get_infection_data()
     analyze_data()
 
 if __name__ == '__main__':
