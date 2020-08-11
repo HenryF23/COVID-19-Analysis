@@ -9,7 +9,7 @@ Piercson
 1. Novel Coronavirus (COVID-19) Cases Data:
     
     https://data.humdata.org/dataset/novel-coronavirus-2019-ncov-cases
-
+    Jan22 to August10
 2. Flights Data across the world:
     
     https://opensky-network.org/datasets/covid-19/
