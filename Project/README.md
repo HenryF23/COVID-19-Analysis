@@ -21,3 +21,11 @@ Piercson
 4. Airport Codes:
     
     https://github.com/datasets/airport-codes/blob/master/data/airport-codes.csv
+
+5. Mask-Wearing Survey Data:
+    
+    https://github.com/nytimes/covid-19-data/tree/master/mask-use
+
+6. 2019 Population Estimates from the US Census Bureau
+    
+    https://github.com/kingaa/covid-19-data/blob/master/pop_est_2019.csv

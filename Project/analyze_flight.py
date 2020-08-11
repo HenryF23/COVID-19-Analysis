@@ -1,8 +1,7 @@
 import glob, seaborn
-import pandas as pd, matplotlib.pyplot as plt
+import numpy as np, pandas as pd, matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from scipy import stats
-
 
 def get_flight_date():
     # flightList = pd.read_csv("Test.csv.gz",parse_dates=["firstseen", "lastseen", "day"])
@@ -101,9 +100,9 @@ def get_infection_data():
     locator = ticker.MaxNLocator(nbins=10) # with 3 bins you will have 4 ticks
     ax.xaxis.set_major_locator(locator)
     plt.xticks(rotation=25)
-    plt.xlabel('Date')
-    plt.ylabel('New infections detected')
-    plt.title('New infections detected at each day')
+    plt.xlabel('Date', fontdict={'fontsize': 22})
+    plt.ylabel('New infections detected', fontdict={'fontsize': 22})
+    plt.title('New infections detected at each day', fontdict={'fontsize': 30, 'weight': 'bold'})
     # plt.show()
 
 def analyze_data():
@@ -124,27 +123,31 @@ def analyze_data():
             & (singleData['day'] <= pd.to_datetime('2020-05-31'))
         ].reset_index()
         reg = stats.linregress(singleData['count'], infectionData[myValues[n]])
-        print('pvalue for %s is:' %(myValues[n]), end='')
-        print(reg.pvalue)
+        scientific_notation = "{:.3e}".format(reg.pvalue)
+        pvalueString = 'pvalue is:\n   ' + str(scientific_notation)
 
         # residual
         # plt.subplot(2,2,n+1)
         # residuals = infectionData[myValues[n]] - (singleData['count']*reg.slope+reg.intercept)
         # plt.hist(residuals)
-        # plt.xlabel('Residual')
-        # plt.ylabel('# Data Points')
-        # plt.title(myValues[n], fontdict={'fontsize':30})
+        # plt.xlabel('Residual', fontdict={'fontsize': 22})
+        # plt.ylabel('# Data Points', fontdict={'fontsize': 22})
+        # plt.title(myValues[n], fontdict={'fontsize': 30, 'weight': 'bold'})
 
         # graph with data points and best fit line
         plt.subplot(2,2,n+1)
         plt.plot(singleData['count'], infectionData[myValues[n]], '.', alpha=0.7)
         plt.plot(singleData['count'],
                  singleData['count']*reg.slope+reg.intercept, 'r-', linewidth=3)
-        plt.xlabel('# flights arrived')
-        plt.ylabel('# newly added infections')
-        plt.legend(['Data Points', 'Best Fit Line'])
-        plt.title(myValues[n])
-        plt.title(myValues[n], fontdict={'fontsize': 30})
+        plt.xlabel('# flights arrived', fontdict={'fontsize': 22})
+        plt.ylabel('# newly added infections', fontdict={'fontsize': 22})
+        plt.legend(['Data Points', 'Best Fit Line'], fontsize=15)
+        prob = dict(facecolor='red', alpha=0.5, edgecolor='red')
+        plt.annotate(pvalueString, xy=(np.mean(singleData['count']),
+                                     np.mean(infectionData[myValues[n]])), xycoords='data',
+                    fontsize=18, bbox=prob)
+        plt.title(myValues[n], fontdict={'fontsize': 30, 'weight': 'bold'})
+
 
     # plt.show()
     plt.savefig('./flight_and_infection_picture/analyzed_picture.png')
@@ -152,8 +155,8 @@ def analyze_data():
 
 def main():
     seaborn.set()
-    get_flight_date()
-    get_infection_data()
+    # get_flight_date()
+    # get_infection_data()
     analyze_data()
 
 if __name__ == '__main__':
