@@ -1,13 +1,13 @@
 # COVID-19 Project
 
-### Library used
+## Library used
 
     import glob, seaborn
     import pandas as pd, matplotlib.pyplot as plt
     import matplotlib.ticker as ticker
     from scipy import stats
 
-### Code description
+## Code description
 
 1. [analyze_flight.py](./analyze_flight.py) 
     
@@ -31,7 +31,7 @@
         * pvalue for Chi-Square Test
 
 
-### Order of execution
+## Order of execution
 
 1. [analyze_flight.py](./analyze_flight.py)
 2. [analyze_mask_usage.py](./analyze_mask_usage.py)
@@ -40,12 +40,12 @@ Note: No need to pass any arguments, just run the code by
     
     python3 fileName.py
 
-### Group member
+## Group member
 Henry
 
 Piercson
 
-### Source of our datasets
+## Source of our datasets
 1. Novel Coronavirus (COVID-19) Cases Data (Jan 22 to August 10):
     
     https://data.humdata.org/dataset/novel-coronavirus-2019-ncov-cases
@@ -70,7 +70,7 @@ Piercson
     
     https://github.com/kingaa/covid-19-data/blob/master/pop_est_2019.csv
 
-### Other references
+## Other references
 
 =======
 CANADA
