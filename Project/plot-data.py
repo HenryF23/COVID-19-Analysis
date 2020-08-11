@@ -4,6 +4,7 @@ import seaborn as sns
 import math
 import numpy as np
 import datetime
+from scipy import stats
 def plot_cases_per_country(cummulative_data):
     countries = ['Canada', 'US', 'China', 'Taiwan*']
     # plot cumulative cases
@@ -85,15 +86,26 @@ def four_bargraphs_range(c_data):
             c_str = countries[i] + "_slope"
             rename_str_c = countries[i]+"_slope_closed"
             rename_str_o = countries[i] + "_slope_opened"
-            country_iso = c_data[(c_data['date'] > range_date[i][0]) | (c_data['date'] < range_date[i][1])][['date',c_str]].rename(columns={c_str:rename_str_c})
-            country_not_iso = c_data[(c_data['date'] < range_date[i][0]) | (c_data['date'] > range_date[i][1])][['date', c_str]].rename(columns={c_str: rename_str_o})
+            country_iso = c_data[(c_data['date'] > range_date[i][0]) & (c_data['date'] < range_date[i][1])][['date',c_str]].rename(columns={c_str:rename_str_c})
+            country_not_iso = c_data[c_data['date'] < range_date[i][0]][['date', c_str]].rename(columns={c_str: rename_str_o})
+            c_iso = country_iso[rename_str_c].to_list()
+            n_iso = country_not_iso[rename_str_o].to_list()
+
+            tot_size_c = len(c_iso)
+            tot_size_o = len(n_iso)
+            if tot_size_c > tot_size_o:
+                c_iso = c_iso[:tot_size_o]
+            else:
+                n_iso = n_iso[:tot_size_c]
+            print("p-value ",countries[i],stats.wilcoxon(c_iso,n_iso).pvalue)
             country_iso = pd.melt(country_iso)
             country_not_iso = pd.melt(country_not_iso)
             country_data = pd.concat([country_iso, country_not_iso])
-            print(country_data)
             country_data = country_data[country_data['variable'] != 'date']
             ax = sns.boxplot(x="value", y="variable", data=country_data,ax=ax)
         except IndexError:
+            break
+        except ValueError:
             break
         i += 1
     plt.show()
