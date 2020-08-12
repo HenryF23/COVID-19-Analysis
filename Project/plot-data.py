@@ -16,7 +16,7 @@ def plot_cases_per_country(cummulative_data):
     plt.ylabel('Cases')
     plt.yscale('log')
     plt.show()
-    # plt.savefig('Cumulative-Cases-over-Time.png')
+    plt.savefig('Cumulative-Cases-over-Time.png')
     plt.clf()
 def plot_cases_perday_country(cummulative_data):
     countries = ['Canada per day', 'US per day', 'China per day', 'Taiwan* per day']
@@ -53,7 +53,8 @@ def four_bargraphs_range(c_data):
         try:
             c_str = countries[i] + ' per day'
             ax.plot(c_data['date'],c_data[c_str])
-            ax.set_title(countries[i])
+            ax.set_title(countries[i] + " New Cases per Day")
+            ax.set_ylabel("New Cases")
             max = c_data[c_str].max()
             ax.vlines(range_date[i][0], 0, max, colors='r')
             ax.vlines(range_date[i][1], 0, max, colors='r')
@@ -61,6 +62,7 @@ def four_bargraphs_range(c_data):
             break
         i += 1
     plt.show()
+    #plt.savefig('Cases-per-day-over-Time.png')
     plt.clf()
 
     # Find instataneous slope per day
@@ -108,12 +110,12 @@ def four_bargraphs_range(c_data):
         except ValueError:
             break
         i += 1
-    plt.show()
+    plt.clf()
 def main():
     sns.set()
     cummulative_data = pd.read_csv('cleaned-data.csv',parse_dates=['date'])
     #plot_cases_per_country(cummulative_data)
-    #plot_cases_perday_country(cummulative_data)
-    four_bargraphs_range(cummulative_data)
+    plot_cases_perday_country(cummulative_data)
+    #four_bargraphs_range(cummulative_data)
 if __name__ == '__main__':
     main()
