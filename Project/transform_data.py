@@ -24,7 +24,7 @@ def main():
     cleaned_country_cases['Taiwan* per day'] = cleaned_country_cases['Taiwan*'] - cleaned_country_cases['Taiwan* per day']
 
     print(cleaned_country_cases)
-    cleaned_country_cases.to_csv('cleaned-data.csv')
+    cleaned_country_cases.to_csv('cumulative_perday.csv')
     return 1
 if __name__ == '__main__':
     main()
