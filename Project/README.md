@@ -49,7 +49,7 @@
 
 Note: No need to pass any arguments, just run the code by
     
-    python3 fileName.py
+    python3 file_name.py
 
 ## Group member
 - Henry
