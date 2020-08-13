@@ -9,48 +9,52 @@
 
 ## Code description
 
-1. [analyze_flight.py](./analyze_flight.py) 
+1. [analyze_rates.py](./analyze_mask_usage.py)
     
-    Description: Analyze relationship between number of flights and COVID-19 Cases
-    
-    * Expect output files in current folder:
-        * newly_added_infection.csv
-    * Expect output files in [flight_and_infection_picture](./flight_and_infection_picture) folder:
-        * num_flights_arrived_each_day.png
-        * new_infections_detected_at_each_day.png
-        * analyzed_picture.png
-    * Expect output: None
-    
-2. [analyze_mask_usage.py](./analyze_mask_usage.py)
-    
-    Description: Analyze relationship between mask usage and number of COVID-19 infections in United States and mask usage in country (with FIPS code) of United States
-    
-    * Expect output files in [mask_analyze_picture](./mask_analyze_picture) folder:
-        * percentage_infected_vs_mask_usage.png
-    * Expect output:
-        * pvalue for Chi-Square Test
-
-3. [analyze_rates.py](./analyze_mask_usage.py)
     Description: Analyzes the rates of new cases of COVID-19 in countries Canada, US, China, Taiwan
+    
     * Expect output files in [rates_picture](./rates_picture) folder:
         * Cumulative-Cases-over-Time.png
         * Cases-per-day-over-Time.png
     * Expect output:
         * pvalue for Wilcoxon signed-rank test for Canada and US
-    ## Order of execution
-1. [transform_data.py](./transform_data.py)
-2. [analyze_flight.py](./analyze_flight.py)
+
+2. [analyze_flight.py](./analyze_flight.py) 
+    
+    Description: Analyze relationship between number of flights and COVID-19 Cases
+    
+    * Expected output files in current folder:
+        * newly_added_infection.csv
+    * Expected output files in [flight_and_infection_picture](./flight_and_infection_picture) folder:
+        * num_flights_arrived_each_day.png
+        * new_infections_detected_at_each_day.png
+        * analyzed_picture.png
+    * Expect output: None
+    
 3. [analyze_mask_usage.py](./analyze_mask_usage.py)
-4. [analyze_rates.py](./analyze_rates.py)
+    
+    Description: Analyze relationship between mask usage and number of COVID-19 infections in United States and mask usage in country (with FIPS code) of United States
+    
+    * Expected output files in [mask_analyze_picture](./mask_analyze_picture) folder:
+        * percentage_infected_vs_mask_usage.png
+    * Expected output:
+        * pvalue for Chi-Square Test
+        
+## Order of execution
+
+1. [transform_data.py](./transform_data.py)
+2. [analyze_rates.py](./analyze_rates.py)
+3. [analyze_flight.py](./analyze_flight.py)
+4. [analyze_mask_usage.py](./analyze_mask_usage.py)
 
 Note: No need to pass any arguments, just run the code by
     
     python3 fileName.py
 
 ## Group member
-Henry
+- Henry
 
-Piercson
+- Piercson
 
 ## Source of our datasets
 1. Novel Coronavirus (COVID-19) Cases Data (Jan 22 to August 10):
@@ -76,5 +80,3 @@ Piercson
 6. 2019 Population Estimates from the US Census Bureau
     
     https://github.com/kingaa/covid-19-data/blob/master/pop_est_2019.csv
-
-
